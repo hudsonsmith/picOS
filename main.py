@@ -64,6 +64,9 @@ while True:
     file = find_program(paths, f"{command}.py")
 
     if file:
-        exec(open(file).read())
+        try:
+            exec(open(file).read())
+        except KeyboardInterrupt:
+            continue
     else:
         print(f"{command}: command not found")
