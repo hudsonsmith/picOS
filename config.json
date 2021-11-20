@@ -1,7 +1,7 @@
 {
 	"username": "raspberry",
 	"hostname": "pi",
-	"prompt": "$u@$h $ "
+	"prompt": "$u@$h $ ",
 	"paths": [
 		"/bin"
 	]

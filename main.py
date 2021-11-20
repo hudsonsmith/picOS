@@ -1,6 +1,15 @@
 from json import load
 from os import listdir
-from os.path import isfile
+
+
+def isfile(filepath: str) -> bool:
+    """A function to replace os.path.isfile in micropython."""
+    try:
+        open(filepath)
+        return True
+
+    except OSError:
+        return False
 
 
 def format_prompt(prompt: str) -> str:
@@ -38,7 +47,11 @@ with open("config.json", "r") as f:
 
 # Program Mainloop.
 while True:
-    command = str(input(prompt))
+    command = str(input(format_prompt(prompt)))
+
+    # If the command is simply nothing, continue the loop.
+    if command == "":
+        continue
 
     # Find the file by formatting the command to look like a filename.
     file = find_program(paths, f"{command}.py")
