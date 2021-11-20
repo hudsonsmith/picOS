@@ -65,5 +65,6 @@ while True:
 
     if file:
         exec(open(file).read())
+        file.close()
     else:
         print("{command}: command not found")
