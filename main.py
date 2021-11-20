@@ -47,7 +47,14 @@ with open("config.json", "r") as f:
 
 # Program Mainloop.
 while True:
-    command = str(input(format_prompt(prompt)))
+    try:
+        command = str(input(format_prompt(prompt)))
+
+    # If the user hits ^C, continue the program without failing.
+    except KeyboardInterrupt:
+        # Print a newline to make sure the prompt does not get stacked on one line.
+        print()
+        continue
 
     # If the command is simply nothing, continue the loop.
     if command == "":
