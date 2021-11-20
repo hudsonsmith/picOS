@@ -10,6 +10,11 @@ def format_prompt(prompt: str) -> str:
 
 
 def find_program(paths: list, filename: str):
+    """
+    A function made to return the path to a program based on a list of dirs
+    and a filename.
+    """
+
     # Search through the given paths for a file to execute.
     for path in paths:
         dir: list = listdir(path)
@@ -34,3 +39,11 @@ with open("config.json", "r") as f:
 # Program Mainloop.
 while True:
     command = str(input(prompt))
+
+    # Find the file by formatting the command to look like a filename.
+    file = find_program(paths, f"{command}.py")
+
+    if file:
+        exec(open(file).read())
+    else:
+        print("{command}: command not found")
